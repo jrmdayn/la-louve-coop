@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { FunctionComponent } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import { Header } from "./header"
 import "./layout.css"
 
-export const Layout: FunctionComponent = ({ children }) => {
+export const Layout: React.FC = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -33,11 +33,6 @@ export const Layout: FunctionComponent = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
     </>
   )
