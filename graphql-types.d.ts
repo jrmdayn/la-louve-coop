@@ -2642,10 +2642,10 @@ export type Unnamed_2_QueryVariables = {};
 
 export type Unnamed_2_Query = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
-export type AllAirtableQueryVariables = {};
+export type IndexPageQueryVariables = {};
 
 
-export type AllAirtableQuery = { allAirtable: { nodes: Array<{ data?: Maybe<Pick<AirtableData, 'Code' | 'Status' | 'Title'>> }> } };
+export type IndexPageQuery = { allAirtable: { nodes: Array<{ data?: Maybe<{ code: AirtableData['Code'], status: AirtableData['Status'], title: AirtableData['Title'] }> }> } };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

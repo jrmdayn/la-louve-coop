@@ -1,37 +1,73 @@
-import React from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { Link, graphql } from "gatsby"
+import FlexSearch, { Index } from "flexsearch"
 
-import { Layout, Image, SEO } from "../components"
-import { AllAirtableQuery } from "../../graphql-types"
+import { Layout, SEO } from "../components"
+import { IndexPageQuery } from "../../graphql-types"
+
+interface Entry {
+  code: number
+  title: string
+}
 
 const IndexPage: React.FC<{
-  data: AllAirtableQuery
+  data: IndexPageQuery
   location: Location
-}> = ({ data }) => (
-  <Layout>
-    <SEO title="Fruits & Légumes" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    {data.allAirtable.nodes.map(({ data }) => (
-      <div>
-        {data?.Title} {data?.Code}
-      </div>
-    ))}
-  </Layout>
-)
+}> = ({ data }) => {
+  const { allAirtable } = data
+
+  const [query, setQuery] = useState("")
+  const [index, setIndex] = useState<Index<number> | null>(null)
+
+  useEffect(() => {
+    const newIndex = FlexSearch.create<number>({
+      async: false,
+      encode: "advanced",
+      // tokenize: "reverse",
+      // suggest: true,
+      // cache: true,
+    })
+    allAirtable.nodes.forEach((node, idx) => {
+      if (node.data?.title) {
+        newIndex.add(idx, node.data?.title)
+      }
+    })
+    setIndex(newIndex)
+  }, [allAirtable])
+
+  const searchResults = useMemo(() => {
+    if (!query || !index)
+      return allAirtable.nodes.map(node => node.data as Entry)
+
+    return index.search(query).map(i => allAirtable.nodes[i].data as Entry)
+  }, [query, index])
+
+  return (
+    <Layout>
+      <SEO title="Fruits & Légumes" />
+      <input
+        value={query}
+        onChange={e => {
+          setQuery(e.target.value)
+        }}
+      />
+      {searchResults.map(({ title, code }, idx) => (
+        <div key={idx}>
+          {title} {code}
+        </div>
+      ))}
+    </Layout>
+  )
+}
 
 export const pageQuery = graphql`
-  query allAirtable {
+  query IndexPage {
     allAirtable {
       nodes {
         data {
-          Code
-          Status
-          Title
+          code: Code
+          status: Status
+          title: Title
         }
       }
     }
