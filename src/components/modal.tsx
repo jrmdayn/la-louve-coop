@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
+import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock"
 
 const Root = styled.div<{ open: boolean }>`
   display: ${({ open }) => (open ? "flex" : "none")};
@@ -23,8 +24,11 @@ export const Modal: React.FC<{ onClose: () => void; open: boolean }> = ({
   children,
 }) => {
   useEffect(() => {
-    if (open) document.body.style.overflow = "hidden"
-    else document.body.style.overflow = "unset"
+    if (open) {
+      disableBodyScroll(document.body)
+    } else {
+      enableBodyScroll(document.body)
+    }
   }, [open])
 
   return (
