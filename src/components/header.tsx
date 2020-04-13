@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
+import { Logo } from "./logo"
+
 const StyledHeader = styled.header`
   background: rebeccapurple;
 `
@@ -20,14 +22,10 @@ const H1 = styled.h1`
   padding-left: 10px;
 `
 
-const Logo = styled.img`
-  height: 36px;
-`
-
 export const Header = ({ siteTitle }: { siteTitle: string }) => (
   <StyledHeader>
     <Container>
-      <Logo src="https://membres.cooplalouve.fr/img/Louve_logo.png" />
+      <Logo />
       <H1>{siteTitle}</H1>
     </Container>
   </StyledHeader>

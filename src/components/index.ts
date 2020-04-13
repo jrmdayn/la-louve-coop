@@ -1,5 +1,5 @@
 export * from "./header"
-export * from "./image"
+export * from "./logo"
 export * from "./layout"
 export * from "./seo"
 export * from "./card"

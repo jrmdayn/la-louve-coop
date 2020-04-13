@@ -57,5 +57,11 @@ module.exports = {
         fileName: `./graphql-types.d.ts`,
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
   ],
 }
