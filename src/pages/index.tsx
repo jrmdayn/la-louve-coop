@@ -10,7 +10,7 @@ import "./style.css"
 
 const Cards = styled.div`
   max-width: 960px;
-  padding-top: 30px;
+  padding: 30px 0;
   > div:not(:last-child) {
     margin-bottom: 16px;
   }
@@ -24,7 +24,7 @@ const SearchBox = styled.input`
   outline: none;
   max-width: 400px;
   padding: 3px 10px;
-  font-size: 14px;
+  font-size: 1rem;
 
   ::placeholder {
     font-style: italic;
