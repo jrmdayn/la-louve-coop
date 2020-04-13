@@ -3,11 +3,12 @@ import { Link, graphql } from "gatsby"
 import FlexSearch, { Index } from "flexsearch"
 import styled from "styled-components"
 
-import { Layout, SEO, Card } from "../components"
+import { Layout, SEO, Card, Modal, LargeType } from "../components"
 import { IndexPageQuery } from "../../graphql-types"
 
+import "./style.css"
+
 const Cards = styled.div`
-  margin: auto;
   max-width: 960px;
   padding-top: 30px;
   > div:not(:last-child) {
@@ -21,9 +22,9 @@ const SearchBox = styled.input`
   border-radius: 4px;
   border: 1px solid lightgrey;
   outline: none;
-  width: 100%;
   max-width: 400px;
   padding: 3px 10px;
+  font-size: 14px;
 
   ::placeholder {
     font-style: italic;
@@ -50,6 +51,7 @@ const IndexPage: React.FC<{
 
   const [query, setQuery] = useState("")
   const [index, setIndex] = useState<Index<number> | null>(null)
+  const [largeType, setLargeType] = useState("")
 
   useEffect(() => {
     const newIndex = FlexSearch.create<number>({
@@ -86,9 +88,17 @@ const IndexPage: React.FC<{
       />
       <Cards>
         {searchResults.map(({ title, code }, idx) => (
-          <Card key={idx} title={title} code={code} />
+          <Card
+            key={idx}
+            onClick={() => setLargeType(code.toString())}
+            title={title}
+            code={code}
+          />
         ))}
       </Cards>
+      <Modal open={largeType.length > 0} onClose={() => setLargeType("")}>
+        <LargeType text={largeType} />
+      </Modal>
     </Layout>
   )
 }

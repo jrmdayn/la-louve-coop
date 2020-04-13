@@ -11,8 +11,16 @@ const Container = styled.div`
 const Title = styled.h3``
 const Code = styled.span``
 
-export const Card = ({ title, code }: { title: string; code: number }) => (
-  <Container>
+export const Card = ({
+  title,
+  code,
+  onClick,
+}: {
+  title: string
+  code: number
+  onClick: () => void
+}) => (
+  <Container onClick={onClick}>
     <Title>{title}</Title>
     <Code>{code}</Code>
   </Container>

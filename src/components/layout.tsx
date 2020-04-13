@@ -10,7 +10,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import { Header } from "./header"
-import "./layout.css"
 
 const Root = styled.div`
   background-color: #f5f5fa;
@@ -21,6 +20,8 @@ const Main = styled.div`
   padding: 0 20px;
   margin: 0 auto;
   max-width: 960px;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Layout: React.FC = ({ children }) => {
@@ -37,9 +38,7 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <Root>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <Main>
-        <main>{children}</main>
-      </Main>
+      <Main>{children}</Main>
     </Root>
   )
 }
