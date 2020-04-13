@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 
 const Root = styled.div<{ open: boolean }>`
@@ -21,8 +21,15 @@ export const Modal: React.FC<{ onClose: () => void; open: boolean }> = ({
   onClose,
   open,
   children,
-}) => (
-  <Root onClick={onClose} open={open}>
-    {children}
-  </Root>
-)
+}) => {
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden"
+    else document.body.style.overflow = "unset"
+  }, [open])
+
+  return (
+    <Root onClick={onClose} open={open}>
+      {children}
+    </Root>
+  )
+}
