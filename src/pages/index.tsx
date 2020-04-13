@@ -106,7 +106,10 @@ const IndexPage: React.FC<{
 
 export const pageQuery = graphql`
   query IndexPage($statusFilter: [String]) {
-    allAirtable(filter: { data: { Status: { in: $statusFilter } } }) {
+    allAirtable(
+      filter: { data: { Status: { in: $statusFilter } } }
+      sort: { fields: data___Title, order: ASC }
+    ) {
       nodes {
         data {
           code: Code

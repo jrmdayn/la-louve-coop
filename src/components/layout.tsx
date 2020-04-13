@@ -13,7 +13,7 @@ import { Header } from "./header"
 
 const Root = styled.div`
   background-color: #f5f5fa;
-  height: 100vh;
+  min-height: 100vh;
 `
 
 const Main = styled.div`
