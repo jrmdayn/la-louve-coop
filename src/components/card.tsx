@@ -7,6 +7,7 @@ const Container = styled.div`
   padding: 10px;
   max-width: 400px;
   background-color: #ffffff;
+  cursor: pointer;
 `
 const Title = styled.h3``
 const Code = styled.span``

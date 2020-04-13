@@ -87,6 +87,7 @@ const IndexPage: React.FC<{
         placeholder="Cherchez votre produit ici.."
       />
       <Cards>
+        {searchResults.length === 0 ? "Aucun résultat" : null}
         {searchResults.map(({ title, code }, idx) => (
           <Card
             key={idx}

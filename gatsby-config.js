@@ -6,9 +6,9 @@ const { AT_API_KEY, AT_BASE_ID, AT_TABLE_NAME } = process.env
 
 module.exports = {
   siteMetadata: {
-    title: `La Loove Coop`,
-    description: `La Loove Coop`,
-    author: `@laloove`,
+    title: `La Louve Coop`,
+    description: `La Louve Coop`,
+    author: `@lalouve`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
