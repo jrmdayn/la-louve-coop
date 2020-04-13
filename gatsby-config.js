@@ -2,7 +2,7 @@ require("dotenv").config({
   path: `.env`,
 })
 
-const { AT_API_KEY, AT_BASE_ID, AT_TABLE_NAME } = process.env
+const { AT_API_KEY, AT_BASE_ID } = process.env
 
 module.exports = {
   siteMetadata: {
@@ -44,7 +44,7 @@ module.exports = {
         tables: [
           {
             baseId: AT_BASE_ID,
-            tableName: AT_TABLE_NAME,
+            tableName: "Fruits & Vegetables",
             // tableView: 'published',
             // queryName: '',
           },
