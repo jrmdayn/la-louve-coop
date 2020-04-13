@@ -105,8 +105,8 @@ const IndexPage: React.FC<{
 }
 
 export const pageQuery = graphql`
-  query IndexPage {
-    allAirtable {
+  query IndexPage($statusFilter: [String]) {
+    allAirtable(filter: { data: { Status: { in: $statusFilter } } }) {
       nodes {
         data {
           code: Code
