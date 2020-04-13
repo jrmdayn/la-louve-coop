@@ -12,7 +12,7 @@ const Container = styled.div`
   max-width: 960px;
   padding: 20px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: flex-start;
 `
 
@@ -20,6 +20,7 @@ const H1 = styled.h1`
   margin: 0;
   color: #ffffff;
   padding-left: 10px;
+  font-size: 30px;
 `
 
 export const Header = ({ siteTitle }: { siteTitle: string }) => (
