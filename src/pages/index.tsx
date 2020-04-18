@@ -56,8 +56,8 @@ const IndexPage: React.FC<{
   useEffect(() => {
     const newIndex = FlexSearch.create<number>({
       async: false,
-      encode: "advanced",
-      // tokenize: "reverse",
+      encode: "simple",
+      tokenize: "full",
       // suggest: true,
       // cache: true,
     })
