@@ -71,7 +71,9 @@ const IndexPage: React.FC<{
 
   const searchResults = useMemo(() => {
     if (!query || !index)
-      return allAirtable.nodes.map(node => node.data as Entry)
+      return allAirtable.nodes
+        .sort((a, b) => a.data?.title?.localeCompare(b.data?.title))
+        .map(node => node.data as Entry)
 
     return index.search(query).map(i => allAirtable.nodes[i].data as Entry)
   }, [query, index])
