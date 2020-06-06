@@ -37,6 +37,8 @@
     "@typescript-eslint/parser": "^2.27.0",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
+    "netlify-lambda": "^1.6.3",
+    "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "typescript": "^3.8.3"
   },
@@ -46,7 +48,9 @@
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "build": "gatsby build",
+    "build:client": "gatsby build",
+    "build:functions": "netlify-lambda build src/functions",
+    "build": "yarn build:client && yarn build:functions",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
